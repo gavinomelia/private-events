@@ -1,0 +1,17 @@
+<h1>Profile</h1>
+
+<h2>Events for <%= @user.email %></h2>
+
+<% if @events.any? %>
+    <ul>
+        <% @events.each do |event| %>
+            <li>
+                <%= link_to 'Show event', event_path(event) %>
+                <%= event.name %>
+                <%= event.inspect %>
+            </li>
+        <% end %>
+    </ul>
+<% else %>
+    <p>No events found.</p>
+<% end %>
