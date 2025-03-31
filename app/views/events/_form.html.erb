@@ -21,6 +21,8 @@
     <%= form.date_field :date %>
   </div>
 
+  <%= form.hidden_field :creator_id, value: current_user.id %>
+
   <div>
     <%= form.submit %>
   </div>
