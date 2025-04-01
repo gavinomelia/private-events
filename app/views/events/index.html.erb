@@ -4,8 +4,19 @@
 
 <h1>Events</h1>
 
-<div id="events">
-  <% @events.each do |event| %>
+<h3>Past Events</h3>
+<div>
+  <% @events.past.each do |event| %>
+    <%= render event %>
+    <p>
+      <%= link_to "Show this event", event %>
+    </p>
+  <% end %>
+</div>
+
+<h3>Upcoming Events</h3>
+<div>
+  <% @events.future.each do |event| %>
     <%= render event %>
     <p>
       <%= link_to "Show this event", event %>
