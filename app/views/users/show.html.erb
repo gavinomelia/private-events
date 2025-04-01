@@ -2,16 +2,28 @@
 
 <h2>Events for <%= @user.email %></h2>
 
-<% if @events.any? %>
+<h3>Created Events</h3>
+<% if @created_events.any? %>
     <ul>
-        <% @events.each do |event| %>
+        <% @created_events.each do |event| %>
             <li>
-                <%= link_to 'Show event', event_path(event) %>
-                <%= event.name %>
-                <%= event.inspect %>
+                <%= link_to event.name, event_path(event) %>
             </li>
         <% end %>
     </ul>
 <% else %>
-    <p>No events found.</p>
+    <p>No created events found.</p>
+<% end %>
+
+<h3>Attending Events</h3>
+<% if @user.attended_events.any? %>
+    <ul>
+        <% @user.attended_events.each do |event| %>
+            <li>
+                <%= link_to event.name, event_path(event) %>
+            </li>
+        <% end %>
+    </ul>
+<% else %>
+    <p>No attending events found.</p>
 <% end %>
