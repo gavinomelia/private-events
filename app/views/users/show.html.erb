@@ -4,26 +4,35 @@
 
 <h3>Created Events</h3>
 <% if @created_events.any? %>
-    <ul>
-        <% @created_events.each do |event| %>
-            <li>
-                <%= link_to event.name, event_path(event) %>
-            </li>
-        <% end %>
-    </ul>
+  <ul>
+    <% @created_events.each do |event| %>
+      <li>
+        <%= link_to event.name, event_path(event) %>
+      </li>
+    <% end %>
+  </ul>
 <% else %>
-    <p>No created events found.</p>
+  <p>No created events found.</p>
 <% end %>
 
 <h3>Attending Events</h3>
 <% if @user.attended_events.any? %>
-    <ul>
-        <% @user.attended_events.each do |event| %>
-            <li>
-                <%= link_to event.name, event_path(event) %>
-            </li>
-        <% end %>
-    </ul>
+<h4>Past Events</h4>
+  <ul>
+    <% @user.attended_events.where('date < ?', Date.today).each do |event| %>
+      <li>
+        <%= link_to event.name, event_path(event) %>
+      </li>
+    <% end %>
+  </ul>
+  <h4>Upcoming Events</h4>
+  <ul>
+    <% @user.attended_events.where('date > ?', Date.today).each do |event| %>
+      <li>
+        <%= link_to event.name, event_path(event) %>
+      </li>
+    <% end %>
+  </ul>
 <% else %>
-    <p>No attending events found.</p>
+  <p>No attending events found.</p>
 <% end %>
