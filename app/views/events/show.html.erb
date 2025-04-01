@@ -7,6 +7,8 @@
   <%= link_to "Back to events", events_path %>
   <% unless @event.attendees.include?(current_user) %>
     <%= button_to 'Attend this event', event_attendances_path(event_id: @event.id), method: :post %> <!-- Ensure method is POST -->
+  <% else %>
+    <%= button_to 'Unattend this event', event_attendance_path(event_id: @event.id), method: :delete %>
   <% end %>
   <h3>Attendees</h3>
   <% if @event.attendees.any? %>
