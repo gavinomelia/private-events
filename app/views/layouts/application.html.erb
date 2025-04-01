@@ -23,6 +23,16 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to "Events", events_path %>
+      <% if current_user %>
+        <%= link_to "Profile", user_path(current_user) %>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path %>
+      <% end %>
+
+
+    </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
